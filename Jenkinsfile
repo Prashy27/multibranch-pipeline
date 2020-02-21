@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         CI = 'true'
-        HTTPS_PROXY=""
+        HTTPS_PROXY = ''
     }
     stages {
         stage('Build') {
