@@ -10,9 +10,15 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage('docker-test') {
+        stage('docker-hello-world') {
             steps {
                 sh 'sudo docker run hello-world'
+            }
+        }
+        stage('docker-agent-test') {
+            agent { "docker" }
+            steps {
+                sh 'echo docker agent test'
             }
         }
     }
