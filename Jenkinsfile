@@ -16,7 +16,7 @@ pipeline {
             }
         }
         stage('docker-agent-test') {
-            agent { docker }
+            agent { docker { image 'maven:3-alpine' }
             steps {
                 sh 'echo docker agent test'
             }
