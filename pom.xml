@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>hello-world</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	<name>hello-world</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -47,6 +47,24 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>com.springdocker.app</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.10</version>
+				<executions>
+					<execution>
+						<id>default</id>
+                        <goals>
+							<goal>build</goal>
+						</goals>
+                    </execution>
+                </executions>
+                <configuration>
+					<repository>prashaanth27/${project.name}</repository>
+					<tag>${project.version}</tag>
+					<skipDockerInfo>true</skipDockerInfo>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
