@@ -1,10 +1,11 @@
 pipeline {
-    agent { docker { image 'maven:3-alpine' } }
+    agent any
     environment {
         CI = 'true'
     }
     stages {
         stage('Build') {
+            agent { docker { image 'maven:3-alpine' } }
             steps {
                 sh 'mvn clean package'
             }
