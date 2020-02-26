@@ -1,8 +1,7 @@
 pipeline {
-    agent any
+    agent { docker { image 'maven:3-alpine' } }
     environment {
         CI = 'true'
-        HTTPS_PROXY = ''
     }
     stages {
         stage('Build') {
@@ -10,16 +9,21 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage('docker-hello-world') {
+        stage('upload docker image to dockerhub') {
             steps {
-                sh 'sudo docker run hello-world'
+                sh 'docker push prashaanth27/hello-world:0.1'
             }
         }
-        stage('docker-agent-test') {
-            agent { docker { image 'maven:3-alpine' } }
-            steps {
-                sh 'echo docker agent test'
-            }
-        }
+//        stage('docker-hello-world') {
+//            steps {
+//                sh 'sudo docker run hello-world'
+//            }
+//        }
+//        stage('docker-agent-test') {
+//            agent { docker { image 'maven:3-alpine' } }
+//            steps {
+//                sh 'echo docker agent test'
+//            }
+//        }
     }
 }
